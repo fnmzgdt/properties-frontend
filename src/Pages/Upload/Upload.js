@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import FormDescription from "../../Components/Forms/FormDescription/FormDescription";
 import FormLocation from "../../Components/Forms/FormLocation/FormLocation";
 import FormPhotos from "../../Components/Forms/FormPhotoUpload/FormPhotoUpload";

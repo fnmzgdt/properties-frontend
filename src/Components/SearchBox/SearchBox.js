@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Filter from "../Filter/Filter";
 import { LinkWrapper } from "../Post/Post.elements";
 import {

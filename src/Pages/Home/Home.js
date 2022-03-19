@@ -1,4 +1,3 @@
-import React from "react";
 import Post from "../../Components/Post/Post";
 import { PageContainer } from "./Home.elements";
 import barn1 from "../../images/barn1.jpg";

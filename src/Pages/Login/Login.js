@@ -1,4 +1,3 @@
-import React from "react";
 import { LinkWrapper } from "../../Components/Navbar/Navbar.elements";
 import bg2 from "../../images/interiorbg2.jpg";
 import {

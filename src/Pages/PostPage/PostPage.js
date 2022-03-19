@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Price,
   Area,
   ConverterContainer,
-  DescriptionContainer,
   ImageWrapper,
   PostContainer,
   Postheader,
@@ -22,6 +22,10 @@ import {
   PublishedBy,
   ShowPhoneButton,
   PhoneNumber,
+  Tag,
+  TagContainer,
+  LocationIcon,
+  LocationContainer,
 } from "./PostPage.elements";
 
 const PostPage = () => {
@@ -61,13 +65,43 @@ const PostPage = () => {
       currency: "€",
     });
   };
+const tags = [{name: "house", color: "red"}, {name: "for sell", color: "lightblue"}, {name: "Sofia", color: "lightgreen"}, {name: "deal", color: "orange"},{name: "house", color: "red"}, {name: "for sell", color: "lightblue"}, {name: "Sofia", color: "lightgreen"}]
 
+const tagMapper = (tags) => {
+  if (tags.length > 6) {
+    return (
+      <>{tags.slice(0,6).map((tag, i) => (
+        <Tag color={tag.color} key={i}>{tag.name}</Tag>
+      ))}
+        <Tag color={"grey"}>+6 more</Tag>
+      </>
+    )
+  } else {
+    return tags.map((tag, i) => (
+      <Tag color={tag.color} key={i}>{tag.name}</Tag>
+    ))
+  }
+}
   return (
+    <motion.div 
+    animate={{ opacity: 1 }}
+    initial={{ opacity: 0 }} 
+    exit={{ opacity: 0 }}
+    transition={{
+      duration: 0.25,
+    }}>
     <PostPageContainer>
       <PostContainer>
-        <Postheader>
-          Луксозна къща в жилищен комплекс от затворен тип
-        </Postheader>
+          <Postheader>
+          Луксозна къща в жилищен комплекс от затворен тип ща в жилищен комплектворен тип в жилплекс от затворен тип
+          </Postheader>
+          <TagContainer>
+            {tagMapper(tags)}
+          </TagContainer>
+          <LocationContainer>
+            <LocationIcon/>
+            <h4>Sofia, Bulgaria</h4>
+          </LocationContainer>
         <ImageAuthorContainer>
           <ImageWrapper />
           <AuthorPriceWrapper>
@@ -113,9 +147,9 @@ const PostPage = () => {
         </ImageAuthorContainer>
 
         <UserInfoContainer></UserInfoContainer>
-        <DescriptionContainer></DescriptionContainer>
       </PostContainer>
     </PostPageContainer>
+    </motion.div>
   );
 };
 

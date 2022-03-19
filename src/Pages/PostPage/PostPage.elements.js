@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Container } from "../../GlobalStyles";
 import { ReactComponent as Usd } from "../../images/usd.svg";
 import { ReactComponent as Euro } from "../../images/euro.svg";
+import {ReactComponent as Location} from "../../images/location.svg"
 
 export const PostPageContainer = styled(Container)`
   flex-direction: column;
@@ -12,9 +13,12 @@ export const PostPageContainer = styled(Container)`
 export const PostContainer = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
+  display: inline-flex;
+  flex-wrap: wrap;
   flex-direction: column;
 `;
+
+
 
 export const Postheader = styled.h1`
   width: 42rem;
@@ -25,6 +29,45 @@ export const Postheader = styled.h1`
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 `;
+
+export const TagContainer = styled.p`
+  width: 42rem;
+  max-width: 42rem;
+  display: block;
+  margin-bottom: 0.5rem;
+`
+
+export const Tag = styled.a`
+  height: 2rem;
+  padding: 0rem 1rem;
+  margin: 0 1rem 0.5rem 0;
+  border-radius: 1rem;
+  background: ${({color}) => `${color}`};
+  display: inline-block;
+  line-height: 2rem;
+  user-select: none;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  color: white;
+` 
+export const LocationContainer = styled.div`
+  width: 42rem;
+  max-width: 42rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+
+  & > h4 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-weight: 500;
+    margin-left: 0.5rem;
+    color: #333;
+  }
+` 
 
 export const ImageAuthorContainer = styled.div`
   display: flex;
@@ -103,6 +146,12 @@ export const EuroCurrency = styled(Euro)`
   height: 1rem;
 `;
 
+export const LocationIcon = styled(Location)`
+  width: 2rem;
+  height: 2rem;
+  fill: #333;
+`;
+
 export const Area = styled.p`
   font-size: 1rem;
   font-weight: 600;
@@ -168,6 +217,8 @@ export const PublishedBy = styled.h3`
   margin-bottom: 2rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  user-select: none;
+
   &:before {
     margin: auto;
     margin-right: 0.25rem;
@@ -215,13 +266,8 @@ export const PhoneNumber = styled.p`
 
 export const UserInfoContainer = styled.div`
   width: 100%;
-  height: 8rem;
+  height: 40rem;
   margin: 1rem 0;
-  background: lightpink;
-`;
-
-export const DescriptionContainer = styled.div`
-  width: 100%;
-  background: lightcoral;
-  margin: 1rem 0;
+  background: #ffffff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;

@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import SearchNavbar from "../../Components/SearchNavbar/SearchNavbar";
-import * as L from "leaflet";
-import reactDom from "react-dom";
+import {Map as LeafletMap, TileLayer, latLng} from "leaflet";
+import {findDOMNode} from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Search = () => {
@@ -9,6 +9,8 @@ const Search = () => {
   const [center, setCenter] = useState(null);
   const [zoom, setZoom] = useState(null);
   const [visible, setVisible] = useState(false);
+
+  console.log(center)
 
   const dragendHandler = () => {
     setCenter(map.current.getCenter());
@@ -24,21 +26,27 @@ const Search = () => {
   };
 
   useEffect(() => {
-    const mapNode = reactDom.findDOMNode(document.getElementById("mapId"));
-
+    const mapNode = findDOMNode(document.getElementById("mapId"));
+  
     if (!mapNode || map.current) {
       return;
     }
 
-    map.current = L.map(mapNode).setZoom(13).setView(L.latLng(43.2, 27.91));
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    map.current = new LeafletMap(mapNode).setZoom(13).setView(latLng(43.2, 27.91));
+
+    const layer = new TileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 17,
-    }).addTo(map.current);
+    });
+
+    layer.addTo(map.current)
+
     setCenter(map.current.getCenter());
     setZoom(map.current.getZoom());
+
     map.current.on("dragend", dragendHandler);
     map.current.on("dragstart", () => setVisible(false));
     map.current.on("zoom", zoomHandler);
+
     console.log(map.current.getBounds());
   }, []);
 

@@ -1,4 +1,3 @@
-import React from "react";
 import TextField from "../../TextFields/TextField";
 import TextField2 from "../../TextFields/TextField2";
 import { motion } from "framer-motion";

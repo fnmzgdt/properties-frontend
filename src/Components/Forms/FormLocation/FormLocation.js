@@ -1,6 +1,5 @@
-import React from "react";
 import styled from "styled-components";
-import LeafletMap from "../../LeafletMap";
+//import LeafletMap from "../../LeafletMap";
 import { motion } from "framer-motion";
 
 const MapWrapper = styled(motion.div)`
@@ -18,7 +17,7 @@ const FormLocation = () => {
         duration: 0.2,
       }}
     >
-      <LeafletMap />
+      {/*<LeafletMap />*/}
     </MapWrapper>
   );
 };
