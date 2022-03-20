@@ -104,6 +104,7 @@ const Search = () => {
                 Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`,
                 fontWeight: "500",
               }}
+              onClick={() => setVisible(false)}
             >
               Търсене в района
             </motion.div>

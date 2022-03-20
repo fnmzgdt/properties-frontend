@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Container } from "../../GlobalStyles";
+import { Link } from "react-router-dom";
 import { ReactComponent as Usd } from "../../images/usd.svg";
 import { ReactComponent as Euro } from "../../images/euro.svg";
-import {ReactComponent as Location} from "../../images/location.svg"
+import { ReactComponent as Location } from "../../images/location.svg";
 
 export const PostPageContainer = styled(Container)`
   flex-direction: column;
@@ -18,13 +19,12 @@ export const PostContainer = styled.div`
   flex-direction: column;
 `;
 
-
-
 export const Postheader = styled.h1`
   width: 42rem;
   margin: 0 0 1rem 0;
   font-size: 1.5rem;
   font-weight: 400;
+  line-height: 2.25rem;
   color: #333;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -35,22 +35,29 @@ export const TagContainer = styled.p`
   max-width: 42rem;
   display: block;
   margin-bottom: 0.5rem;
-`
+`;
 
-export const Tag = styled.a`
+export const Tag = styled(Link)`
   height: 2rem;
   padding: 0rem 1rem;
   margin: 0 1rem 0.5rem 0;
   border-radius: 1rem;
-  background: ${({color}) => `${color}`};
+  background: ${({ color }) => `${color}`};
   display: inline-block;
   line-height: 2rem;
   user-select: none;
   cursor: pointer;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: 500;
   color: white;
-` 
+  text-decoration: none;
+  transition: 0.2s ease-in-out;
+  :hover {
+    background: ${({ hover }) => `${hover}`};
+  }
+`;
+
 export const LocationContainer = styled.div`
   width: 42rem;
   max-width: 42rem;
@@ -58,16 +65,29 @@ export const LocationContainer = styled.div`
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  cursor: pointer;
-  user-select: none;
 
   & > h4 {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-weight: 500;
     margin-left: 0.5rem;
     color: #333;
   }
-` 
+
+  & > p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-weight: 500;
+    margin-left: 1rem;
+    color: #29b6f6;
+    cursor: pointer;
+    text-decoration: underline;
+    user-select: none;
+    :hover {
+      text-decoration: none;
+    }
+  }
+`;
 
 export const ImageAuthorContainer = styled.div`
   display: flex;
@@ -80,10 +100,11 @@ export const ImageAuthorContainer = styled.div`
 export const ImageWrapper = styled.div`
   width: 42rem;
   min-width: 42rem;
-  height: 37rem;
+  height: 31rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   border-radius: 0.125rem;
   background: #ffffff;
+  overflow: hidden;
 `;
 
 export const AuthorPriceWrapper = styled.div`
@@ -252,7 +273,7 @@ export const ShowPhoneButton = styled.button`
   background-color: #29b6f6;
   height: 2.25rem;
   :hover {
-    background-color: lightblue;
+    background-color: #5ac7f8;
   }
 `;
 
@@ -264,10 +285,28 @@ export const PhoneNumber = styled.p`
 `;
 //////////////////
 
-export const UserInfoContainer = styled.div`
+export const DescriptionContainer = styled.div`
   width: 100%;
   height: 40rem;
   margin: 1rem 0;
+  padding: 1.75rem 2.5rem;
+  display: flex;
+  flex-direction: column;
   background: #ffffff;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+`;
+
+export const DescriptionHeader = styled.h2`
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #29b6f6;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+`;
+
+export const DescriptionText = styled.p`
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 1rem 0;
+  line-height: 2rem;
 `;
