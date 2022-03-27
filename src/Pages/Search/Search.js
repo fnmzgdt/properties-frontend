@@ -1,16 +1,24 @@
 import { useState, useEffect, useRef } from "react";
-import SearchNavbar from "../../Components/SearchNavbar/SearchNavbar";
-import {Map as LeafletMap, TileLayer, latLng} from "leaflet";
-import {findDOMNode} from "react-dom";
-import { AnimatePresence, motion } from "framer-motion";
+import SearchResultSidebar from "../../Components/SearchResultSidebar/SearchResultSidebar";
+import { Map as LeafletMap, TileLayer, latLng } from "leaflet";
+import { findDOMNode } from "react-dom";
+import { AnimatePresence } from "framer-motion";
+import {
+  SearchMapButton,
+  SearchMapContainer,
+  SearchResultsContainer,
+  SearchPageWrapper,
+} from "./Search.elements";
+import SearchMapNavbar from "../../Components/SearchMapNavbar/SearchMapNavbar";
 
 const Search = () => {
   const map = useRef();
   const [center, setCenter] = useState(null);
   const [zoom, setZoom] = useState(null);
   const [visible, setVisible] = useState(false);
+  const [searchShow, setSearchShow] = useState(false);
 
-  console.log(center)
+  console.log(center);
 
   const dragendHandler = () => {
     setCenter(map.current.getCenter());
@@ -27,18 +35,23 @@ const Search = () => {
 
   useEffect(() => {
     const mapNode = findDOMNode(document.getElementById("mapId"));
-  
+
     if (!mapNode || map.current) {
       return;
     }
 
-    map.current = new LeafletMap(mapNode).setZoom(13).setView(latLng(43.2, 27.91));
+    map.current = new LeafletMap(mapNode)
+      .setZoom(13)
+      .setView(latLng(43.2, 27.91));
 
-    const layer = new TileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 17,
-    });
+    const layer = new TileLayer(
+      "https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png",
+      {
+        maxZoom: 18,
+      }
+    );
 
-    layer.addTo(map.current)
+    layer.addTo(map.current);
 
     setCenter(map.current.getCenter());
     setZoom(map.current.getZoom());
@@ -51,67 +64,55 @@ const Search = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        minHeight: "calc(100vh - 3.5rem)",
-        margin: "0 auto",
-        display: "flex",
-        width: "100%",
-        height: "100%",
-        position: "relative",
+    <SearchPageWrapper
+      key={"searchpagekey"}
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 0.25,
       }}
     >
-      <SearchNavbar />
-      <div style={{ width: "100%", minHeight: "100%", position: "relative" }}>
-        {
-          <div
-            style={{
-              width: "100%",
-              height: "100%",
-              position: "absolute",
-              top: "0",
-              left: "0",
-            }}
-            id="mapId"
-          />
-        }
-        <AnimatePresence>
-          {visible && zoom > 14 && (
-            <motion.div
-              animate={{ opacity: 1 }}
-              initial={{ opacity: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{
-                duration: 0.3,
-              }}
+      <SearchMapNavbar />
+      <div style={{ height: "calc(100vh - 8rem)", display: "flex" }}>
+        <SearchResultsContainer>
+          {searchShow && <SearchResultSidebar />}
+        </SearchResultsContainer>
+        <SearchMapContainer>
+          {
+            <div
               style={{
+                width: "100%",
+                height: "100%",
                 position: "absolute",
-                left: "45%",
-                top: "7%",
-                zIndex: "401",
-                width: "12rem",
-                boxShadow:
-                  "rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px",
-                borderRadius: "1rem",
-                height: "3rem",
-                padding: "0.5rem 1rem",
-                background: "white",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`,
-                fontWeight: "500",
+                top: "0",
+                left: "0",
               }}
-              onClick={() => setVisible(false)}
-            >
-              Търсене в района
-            </motion.div>
-          )}
-        </AnimatePresence>
+              id="mapId"
+            />
+          }
+          <AnimatePresence>
+            {visible && zoom > 14 && (
+              <SearchMapButton
+                animate={{ opacity: 1 }}
+                initial={{ opacity: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{
+                  duration: 0.3,
+                }}
+                onClick={() => {
+                  setVisible(false);
+                  setSearchShow(true);
+                }}
+                key={"searchmapbutton"}
+              >
+                Търсене в района
+              </SearchMapButton>
+            )}
+          </AnimatePresence>
+        </SearchMapContainer>
       </div>
-    </div>
+    </SearchPageWrapper>
   );
 };
 

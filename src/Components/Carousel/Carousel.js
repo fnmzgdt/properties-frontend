@@ -33,7 +33,7 @@ const variants = {
   enter: (direction) => {
     return {
       x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
+      opacity: 0.8,
       y: 0,
     };
   },
@@ -46,7 +46,7 @@ const variants = {
     return {
       zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
+      opacity: 0.8,
       y: 0,
     };
   },
@@ -75,7 +75,7 @@ const Carousel = () => {
   return (
     <CarouselContainer>
       <MainCanvas
-        onMouseEnter={() => setArrowsVisible(true)}
+        onMouseOver={() => setArrowsVisible(true)}
         onMouseLeave={() => setArrowsVisible(false)}
       >
         <>

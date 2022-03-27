@@ -130,13 +130,13 @@ const PostPage = () => {
             комплектворен тип в жилплекс от затворен тип
           </Postheader>
           <TagContainer>{tagMapper(tags)}</TagContainer>
-          {
+          {/*
             <LocationContainer>
               <LocationIcon />
               <h4>Sofia, Bulgaria</h4>
               <p>покажи на картата</p>
             </LocationContainer>
-          }
+          */}
           <ImageAuthorContainer>
             <ImageWrapper>
               <Carousel />

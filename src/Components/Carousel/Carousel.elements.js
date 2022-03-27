@@ -44,7 +44,7 @@ export const ImageSelectorContainer = styled.div`
   align-items: center;
   justify-content: center;
   background: transparent;
-  z-index: 20;
+  z-index: 2;
 `;
 
 export const CircleSelector = styled.div`

@@ -288,7 +288,7 @@ export const PhoneNumber = styled.p`
 export const DescriptionContainer = styled.div`
   width: 100%;
   height: 40rem;
-  margin: 1rem 0;
+  margin: 3rem 0;
   padding: 1.75rem 2.5rem;
   display: flex;
   flex-direction: column;
@@ -297,8 +297,8 @@ export const DescriptionContainer = styled.div`
 `;
 
 export const DescriptionHeader = styled.h2`
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 500;
   color: #29b6f6;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;

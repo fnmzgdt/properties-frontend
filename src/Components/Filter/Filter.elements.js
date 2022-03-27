@@ -9,7 +9,6 @@ export const FilterBox = styled.div`
   height: 2.5rem;
   position: relative;
   align-items: center;
-  margin: 1rem 1rem 0 0;
   border: 1px solid lightgray;
   border-radius: 0.125rem;
   background: #ffffff;
@@ -32,6 +31,7 @@ export const FilterBox = styled.div`
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 0.875rem;
     user-select: none;
+    line-height: 1rem;
     padding: 0rem 0.5rem;
     height: 100%;
     display: flex;
