@@ -1,8 +1,4 @@
 import {
-  SearchHouseIcon,
-  SearchPromptContainer,
-  SearchPromptHeader,
-  SearchResultsContainer,
   SearchResultWrapper,
   PostContainer,
   PostDescriptionContainer,

@@ -8,7 +8,6 @@ export const SearchPageWrapper = styled(motion.main)`
   flex-direction: column;
   width: 100%;
   height: calc(100vh - 3.5rem);
-  position: relative;
 `;
 
 export const SearchResultsContainer = styled.div`

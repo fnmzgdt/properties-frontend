@@ -24,8 +24,6 @@ import {
   PhoneNumber,
   Tag,
   TagContainer,
-  LocationIcon,
-  LocationContainer,
   DescriptionHeader,
   DescriptionText,
 } from "./PostPage.elements";

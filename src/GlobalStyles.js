@@ -26,7 +26,7 @@ export const Background = styled.main`
   background-color: #fafafa;
 `;
 
-export const Container = styled.main`
+export const Container = styled.div`
   width: 100%;
   height: 100%;
   max-width: 64rem;

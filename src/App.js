@@ -8,6 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import { useMemo } from "react";
 import Search from "./Pages/Search/Search";
 import PostPage from "./Pages/PostPage/PostPage";
+import Explore from "./Pages/Explore/Explore";
 
 function App() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/upload" component={Upload} key="upload" />
         <Route exact path="/search" component={Search} key="search" />
         <Route exact path="/post" component={PostPage} key="post" />
+        <Route exact path="/explore" component={Explore} key="explore" />
       </div>
     );
   };

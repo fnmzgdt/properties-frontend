@@ -3,10 +3,14 @@ import styled from "styled-components";
 import { ReactComponent as Home } from "../../images/home.svg";
 import { ReactComponent as Add } from "../../images/addbox.svg";
 import { ReactComponent as World } from "../../images/map1.svg";
+import { ReactComponent as Explore } from "../../images/explore.svg";
+import { ReactComponent as Profile } from "../../images/account.svg";
 
 export const HomeIcon = styled(Home)`
   fill: #0288d1;
-  height: 60%;
+  margin: 0 0.5rem;
+  width: 1.75rem;
+  height: 1.75rem;
   transition: all 0.2s ease;
   &:hover {
     cursor: pointer;
@@ -27,6 +31,30 @@ export const AddIcon = styled(Add)`
 `;
 
 export const WorldIcon = styled(World)`
+  margin: 0 0.5rem;
+  fill: #0288d1;
+  width: 1.75rem;
+  height: 1.75rem;
+  transition: all 0.2s ease;
+  &:hover {
+    cursor: pointer;
+    fill: #29b6f6;
+  }
+`;
+
+export const ExploreIcon = styled(Explore)`
+  margin: 0 0.5rem;
+  fill: #0288d1;
+  width: 1.75rem;
+  height: 1.75rem;
+  transition: all 0.2s ease;
+  &:hover {
+    cursor: pointer;
+    fill: #29b6f6;
+  }
+`;
+
+export const ProfileIcon = styled(Profile)`
   margin: 0 0.5rem;
   fill: #0288d1;
   width: 1.75rem;

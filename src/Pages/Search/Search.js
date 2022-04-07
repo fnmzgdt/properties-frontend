@@ -1,6 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import SearchResultSidebar from "../../Components/SearchResultSidebar/SearchResultSidebar";
-import { Map as LeafletMap, TileLayer, latLng } from "leaflet";
+import * as L from "leaflet";
+
+import "leaflet.markercluster/dist/leaflet.markercluster";
+import "leaflet.markercluster/dist/MarkerCluster.css";
+import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+
 import { findDOMNode } from "react-dom";
 import { AnimatePresence } from "framer-motion";
 import {
@@ -11,12 +16,20 @@ import {
 } from "./Search.elements";
 import SearchMapNavbar from "../../Components/SearchMapNavbar/SearchMapNavbar";
 
+const housess = [
+  { name: "house", lat: "43.209495", long: "27.927295" },
+  { name: "house1", lat: "43.207495", long: "27.917295" },
+  { name: "house2", lat: "43.209495", long: "27.919295" },
+];
 const Search = () => {
   const map = useRef();
+  const clusterLayer = useRef();
+
   const [center, setCenter] = useState(null);
   const [zoom, setZoom] = useState(null);
   const [visible, setVisible] = useState(false);
   const [searchShow, setSearchShow] = useState(false);
+  const [houses, setHouses] = useState([]);
 
   console.log(center);
 
@@ -28,9 +41,6 @@ const Search = () => {
   const zoomHandler = () => {
     const currentZoom = map.current.getZoom();
     setZoom(currentZoom);
-    if (currentZoom > 14) {
-      setVisible(true);
-    }
   };
 
   useEffect(() => {
@@ -40,18 +50,11 @@ const Search = () => {
       return;
     }
 
-    map.current = new LeafletMap(mapNode)
-      .setZoom(13)
-      .setView(latLng(43.2, 27.91));
+    map.current = new L.map(mapNode).setZoom(13).setView(L.latLng(43.2, 27.91));
 
-    const layer = new TileLayer(
-      "https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png",
-      {
-        maxZoom: 18,
-      }
-    );
-
-    layer.addTo(map.current);
+    L.tileLayer("https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+    }).addTo(map.current);
 
     setCenter(map.current.getCenter());
     setZoom(map.current.getZoom());
@@ -62,6 +65,29 @@ const Search = () => {
 
     console.log(map.current.getBounds());
   }, []);
+
+  useEffect(() => {
+    clusterLayer.current?.remove();
+
+    if (!map.current) {
+      return;
+    }
+
+    if (clusterLayer && clusterLayer.current) {
+      map.current.removeLayer(clusterLayer.current);
+      clusterLayer.current?.remove();
+    }
+
+    clusterLayer.current = L.markerClusterGroup();
+
+    houses.forEach((house) => {
+      L.circleMarker(L.latLng(house.lat, house.long)).addTo(
+        clusterLayer.current
+      );
+    });
+
+    map.current.addLayer(clusterLayer.current);
+  }, [houses]);
 
   return (
     <SearchPageWrapper
@@ -103,6 +129,7 @@ const Search = () => {
                 onClick={() => {
                   setVisible(false);
                   setSearchShow(true);
+                  setHouses(housess);
                 }}
                 key={"searchmapbutton"}
               >
